@@ -14,24 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Z.ai Code Scaffold - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Z.ai. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Z.ai", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Z.ai Team" }],
+  title: "YouTube Uploader - Upload from Google Drive",
+  description: "Seamlessly upload videos from Google Drive to YouTube with a beautiful, modern interface. Built with Next.js, TypeScript, and Tailwind CSS.",
+  keywords: ["YouTube", "Google Drive", "Video Upload", "Next.js", "TypeScript", "Tailwind CSS"],
+  authors: [{ name: "YouTube Uploader Team" }],
   icons: {
     icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
   },
   openGraph: {
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
-    url: "https://chat.z.ai",
-    siteName: "Z.ai",
+    title: "YouTube Uploader",
+    description: "Upload videos from Google Drive to YouTube effortlessly",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
+    title: "YouTube Uploader",
+    description: "Upload videos from Google Drive to YouTube effortlessly",
   },
 };
 
