@@ -119,29 +119,40 @@
 body {
   @apply bg-background text-foreground;
   font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-muted/20;
+  @apply bg-muted/30;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground/30 hover:bg-muted-foreground/50;
+  @apply bg-muted-foreground/40 hover:bg-muted-foreground/60;
   border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
 }
 
-/* Smooth transitions */
-* {
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/70;
+}
+
+/* Smooth transitions for theme changes */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enhanced focus visibility */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
 }
 
 /* Animation classes */
@@ -162,7 +173,31 @@ body {
   }
   to {
     opacity: 1;
+    transform: scale(1);
   }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+  background-size: 1000px 100%;
 }
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);

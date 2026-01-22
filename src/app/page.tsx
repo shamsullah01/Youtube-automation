@@ -309,43 +309,47 @@ export default function YouTubeUploader() {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex flex-col relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 -left-20 w-96 h-96 bg-gradient-to-br from-red-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 -right-20 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-20 -left-20 w-96 h-96 bg-gradient-to-br from-red-500/10 via-rose-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 -right-20 w-96 h-96 bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
       </div>
 
       {/* Header */}
-      <header className="border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70 sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-5">
+      <header className="border-b border-border/40 bg-background/90 backdrop-blur-xl supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50 shadow-lg shadow-black/5">
+        <div className="container mx-auto px-4 sm:px-6 py-4 lg:py-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="bg-gradient-to-br from-red-600 to-red-700 p-2.5 rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-500/30 transition-all duration-300 hover:scale-105">
-                <Youtube className="h-7 w-7 text-white" />
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="bg-gradient-to-br from-red-600 via-red-600 to-red-700 p-2.5 rounded-2xl shadow-lg shadow-red-500/30 hover:shadow-red-500/40 transition-all duration-300 hover:scale-105 ring-2 ring-red-500/10">
+                <Youtube className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">YouTube Uploader</h1>
-                <p className="text-sm text-muted-foreground">Upload videos from Google Drive seamlessly</p>
+                <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent">YouTube Uploader</h1>
+                <p className="text-xs sm:text-sm text-muted-foreground hidden sm:block">Upload videos from Google Drive seamlessly</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <ThemeToggle />
               {isDriveConnected ? (
-                <div className="flex items-center gap-2.5 text-sm bg-green-500/10 px-4 py-2 rounded-full border border-green-500/20">
-                  <CheckCircle2 className="h-4 w-4 text-green-500 animate-pulse" />
-                  <span className="text-green-700 dark:text-green-400 font-medium">Drive Connected</span>
+                <div className="flex items-center gap-2 sm:gap-2.5 text-xs sm:text-sm bg-gradient-to-r from-green-500/15 to-emerald-500/15 px-3 sm:px-4 py-2 rounded-full border border-green-500/30 shadow-sm shadow-green-500/10">
+                  <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-600 dark:text-green-400 animate-pulse" />
+                  <span className="text-green-700 dark:text-green-400 font-medium hidden sm:inline">Drive Connected</span>
+                  <span className="text-green-700 dark:text-green-400 font-medium sm:hidden">Connected</span>
                 </div>
               ) : (
                 <Button
                   onClick={handleConnectDrive}
                   disabled={isLoadingDrive}
                   variant="outline"
-                  className="gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
+                  size="sm"
+                  className="gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md border-border/60 hover:border-primary/50"
                 >
                   {isLoadingDrive ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
                   ) : (
                     <HardDrive className="h-4 w-4" />
                   )}
-                  Connect Drive
+                  <span className="hidden sm:inline">Connect Drive</span>
+                  <span className="sm:hidden">Connect</span>
                 </Button>
               )}
             </div>
@@ -354,30 +358,31 @@ export default function YouTubeUploader() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 container mx-auto px-4 py-8 relative z-10">
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-6 sm:py-8 lg:py-10 relative z-10">
         <Tabs defaultValue="upload" className="w-full">
-          <TabsList className="grid w-full max-w-md grid-cols-2 mx-auto bg-muted/50 backdrop-blur-sm p-1.5 h-auto shadow-sm">
-            <TabsTrigger value="upload" className="gap-2 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-primary/90 data-[state=active]:shadow-md transition-all duration-300 py-2.5">
+          <TabsList className="grid w-full max-w-md grid-cols-2 mx-auto bg-muted/60 backdrop-blur-md p-1.5 h-auto shadow-md border border-border/40">
+            <TabsTrigger value="upload" className="gap-2 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-primary/95 data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 transition-all duration-300 py-2.5 rounded-lg">
               <Upload className="h-4 w-4" />
-              Upload
+              <span className="hidden sm:inline">Upload</span>
             </TabsTrigger>
-            <TabsTrigger value="history" className="gap-2 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-primary/90 data-[state=active]:shadow-md transition-all duration-300 py-2.5">
+            <TabsTrigger value="history" className="gap-2 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-primary/95 data-[state=active]:shadow-lg data-[state=active]:shadow-primary/20 transition-all duration-300 py-2.5 rounded-lg">
               <Clock className="h-4 w-4" />
-              History
+              <span className="hidden sm:inline">History</span>
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="upload" className="mt-8 animate-in fade-in-50 duration-500">
-            <div className="grid gap-6 lg:grid-cols-3">
+          <TabsContent value="upload" className="mt-6 sm:mt-8 animate-in fade-in-50 duration-500">
+            <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
               {/* Drive Files Panel */}
-              <Card className="lg:col-span-1 border-2 hover:border-primary/20 transition-all duration-300 shadow-lg hover:shadow-xl bg-card/50 backdrop-blur-sm">
+              <Card className="lg:col-span-1 border-2 border-border/50 hover:border-primary/30 transition-all duration-300 shadow-lg hover:shadow-xl bg-card/60 backdrop-blur-md">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg flex items-center gap-2">
-                      <div className="bg-gradient-to-br from-blue-500 to-cyan-500 p-1.5 rounded-lg">
+                    <CardTitle className="text-base sm:text-lg flex items-center gap-2">
+                      <div className="bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-500 p-1.5 rounded-lg shadow-md shadow-blue-500/20">
                         <HardDrive className="h-4 w-4 text-white" />
                       </div>
-                      Google Drive
+                      <span className="hidden sm:inline">Google Drive</span>
+                      <span className="sm:hidden">Drive</span>
                     </CardTitle>
                     <Button
                       variant="ghost"
@@ -462,10 +467,10 @@ export default function YouTubeUploader() {
               </Card>
 
               {/* Upload Configuration Panel */}
-              <Card className="lg:col-span-2 border-2 hover:border-primary/20 transition-all duration-300 shadow-lg hover:shadow-xl bg-card/50 backdrop-blur-sm">
+              <Card className="lg:col-span-2 border-2 border-border/50 hover:border-primary/30 transition-all duration-300 shadow-lg hover:shadow-xl bg-card/60 backdrop-blur-md">
                 <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <div className="bg-gradient-to-br from-purple-500 to-pink-500 p-1.5 rounded-lg">
+                  <CardTitle className="text-base sm:text-lg flex items-center gap-2">
+                    <div className="bg-gradient-to-br from-purple-500 via-purple-600 to-pink-500 p-1.5 rounded-lg shadow-md shadow-purple-500/20">
                       <Upload className="h-4 w-4 text-white" />
                     </div>
                     Upload Settings
@@ -486,14 +491,14 @@ export default function YouTubeUploader() {
                   ) : (
                     <>
                       {/* Selected Video Preview */}
-                      <div className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-xl p-5 border-2 border-primary/20 shadow-sm animate-in fade-in-50 slide-in-from-top-2">
-                        <div className="flex items-center gap-4">
-                          <div className="bg-gradient-to-br from-primary to-primary/80 p-3 rounded-xl shadow-lg shadow-primary/20">
-                            <FileVideo className="h-8 w-8 text-primary-foreground" />
+                      <div className="bg-gradient-to-br from-muted/60 via-muted/50 to-muted/40 rounded-xl p-4 sm:p-5 border-2 border-primary/30 shadow-md shadow-primary/5 animate-in fade-in-50 slide-in-from-top-2">
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          <div className="bg-gradient-to-br from-primary via-primary/95 to-primary/85 p-2.5 sm:p-3 rounded-xl shadow-lg shadow-primary/30">
+                            <FileVideo className="h-6 w-6 sm:h-8 sm:w-8 text-primary-foreground" />
                           </div>
-                          <div className="flex-1">
-                            <h4 className="font-semibold">{selectedVideo.name}</h4>
-                            <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-sm sm:text-base truncate">{selectedVideo.name}</h4>
+                            <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground mt-1">
                               <span>{formatFileSize(selectedVideo.size)}</span>
                               <Separator orientation="vertical" className="h-4" />
                               <span>{formatDate(selectedVideo.modifiedTime)}</span>
@@ -648,7 +653,7 @@ export default function YouTubeUploader() {
                         <Button
                           onClick={handleUpload}
                           disabled={isUploading || !title.trim()}
-                          className="w-full h-14 text-base bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shadow-lg shadow-red-500/30 hover:shadow-xl hover:shadow-red-500/40 transition-all duration-300 hover:scale-[1.02] font-semibold"
+                          className="w-full h-12 sm:h-14 text-sm sm:text-base bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-700 hover:via-red-700 hover:to-red-800 shadow-lg shadow-red-500/30 hover:shadow-xl hover:shadow-red-500/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                           size="lg"
                         >
                           {isUploading ? (
@@ -675,11 +680,11 @@ export default function YouTubeUploader() {
             </div>
           </TabsContent>
 
-          <TabsContent value="history" className="mt-8 animate-in fade-in-50 duration-500">
-            <Card className="border-2 hover:border-primary/20 transition-all duration-300 shadow-lg bg-card/50 backdrop-blur-sm">
+          <TabsContent value="history" className="mt-6 sm:mt-8 animate-in fade-in-50 duration-500">
+            <Card className="border-2 border-border/50 hover:border-primary/30 transition-all duration-300 shadow-lg hover:shadow-xl bg-card/60 backdrop-blur-md">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <div className="bg-gradient-to-br from-orange-500 to-amber-500 p-1.5 rounded-lg">
+                <CardTitle className="text-base sm:text-lg flex items-center gap-2">
+                  <div className="bg-gradient-to-br from-orange-500 via-orange-600 to-amber-500 p-1.5 rounded-lg shadow-md shadow-orange-500/20">
                     <Clock className="h-4 w-4 text-white" />
                   </div>
                   Upload History
@@ -730,10 +735,10 @@ export default function YouTubeUploader() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t bg-background/80 backdrop-blur-sm mt-auto relative z-10">
+      <footer className="border-t border-border/40 bg-background/90 backdrop-blur-md mt-auto relative z-10 shadow-[0_-2px_10px_rgba(0,0,0,0.03)]">
         <div className="container mx-auto px-4 py-6">
-          <p className="text-center text-sm text-muted-foreground">
-            Built with <span className="text-primary font-medium">Next.js</span> and <span className="text-primary font-medium">YouTube Data API v3</span>
+          <p className="text-center text-xs sm:text-sm text-muted-foreground">
+            Built with <span className="text-primary font-semibold">Next.js</span> and <span className="text-primary font-semibold">YouTube Data API v3</span>
           </p>
         </div>
       </footer>
